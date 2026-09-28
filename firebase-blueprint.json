@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "UserWorkspaceProfile": {
+      "title": "User Workspace Profile",
+      "description": "User profile with workspace activity and linked settings",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "lastActiveAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email"]
+    },
+    "WorkspaceLog": {
+      "title": "Workspace Log Note",
+      "description": "Notes and logs synced from Google Workspace documents and Keep notes",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 256 },
+        "snippet": { "type": "string", "maxLength": 2048 },
+        "source": { "type": "string", "enum": ["DRIVE", "DOCS", "KEEP", "MANUAL", "GMAIL", "TASKS"] },
+        "externalId": { "type": "string", "maxLength": 256 },
+        "externalUrl": { "type": "string", "maxLength": 512 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "title", "source", "createdAt"]
+    },
+    "GmailMessageRecord": {
+      "title": "Gmail Message Record",
+      "description": "Synced or cached email metadata and notes from Gmail",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "threadId": { "type": "string", "maxLength": 128 },
+        "subject": { "type": "string", "maxLength": 512 },
+        "from": { "type": "string", "maxLength": 256 },
+        "to": { "type": "string", "maxLength": 256 },
+        "snippet": { "type": "string", "maxLength": 2048 },
+        "date": { "type": "string", "maxLength": 64 },
+        "syncedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "subject"]
+    },
+    "GoogleTaskRecord": {
+      "title": "Google Task Record",
+      "description": "Synced or tracked Google Task item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "listId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 512 },
+        "notes": { "type": "string", "maxLength": 2048 },
+        "status": { "type": "string", "maxLength": 64 },
+        "due": { "type": "string", "maxLength": 64 },
+        "updated": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "title", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserWorkspaceProfile",
+      "description": "User profile document"
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": "WorkspaceLog",
+      "description": "User's synced workspace notes and documents"
+    },
+    "/users/{userId}/emails/{emailId}": {
+      "schema": "GmailMessageRecord",
+      "description": "User's cached or flagged Gmail messages"
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": "GoogleTaskRecord",
+      "description": "User's cached or synced Google Tasks"
+    }
+  }
+}

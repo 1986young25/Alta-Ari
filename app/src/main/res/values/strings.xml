@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Aura Command Dashboard</string>
+    <string name="title_dashboard">Aura Command</string>
+    <string name="subsystem_telemetry">Subsystem Telemetry</string>
+    <string name="patent_pending_label">Patent Pending App No. 64-014,873</string>
+    <string name="dyv_physics_hash">DYV Physics Hash Genesis</string>
+    <string name="acoustic_cloak">Acoustic Cloak Active</string>
+    <string name="shannon_entropy_nominal">Nominal Superposition</string>
+    <string name="shannon_entropy_containment">Daemon Halted Isolation</string>
+</resources>

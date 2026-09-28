@@ -1,0 +1,6 @@
+{
+  "name": "Aura Command Dashboard",
+  "description": "Aura Cyber-Physical Architecture & DYVS Physics Hash Genesis (Patent Pending App No. 64-014,873): Real-time telemetry, 4D Gaussian splatting, Three.js Merkaba HUD, TDOA acoustic navigation, and SQLite WAL persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
